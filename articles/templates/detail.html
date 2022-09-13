@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {%  block content %}
+
+<h2 class="text-center">DETAIL</h2>
+<h3>{{ article.pk }}번째 글</h3>
+<br />
+<p>제목: {{ article.title }}</p>
+<p>내용: {{ article.content }}</p>
+<p>작성 시각: {{ article.created_at|date:"SHORT_DATE_FORMAT" }}</p>
+<!-- date:"SHORT_DATE_FORMAT"는 필터 기능. 날짜를 일/월/년(ex. 21/05/2020)형식으로 출력함. -->
+<form action="{% url 'articles:delete' article.pk %}" method="POST">
+<!-- method 미작성시 디폴트 get으로 감. -->
+    {% csrf_token %}
+    <button class="btn btn-danger">DELETE</button>
+</form>
+<a href="{% url 'articles:edit' article.pk %}" class="btn btn-primary">EDIT</a> <br />
+<a href="{% url 'articles:dinner' %}">[back]</a>
+<br />
+
+{%  endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {%  block content %}
+
+<h1 class="text-center">EDIT</h1>
+<form class="form-group" action = "{% url 'articles:update' article.pk%}" method = "POST">
+    {% csrf_token %}
+    <label for="title">Title: </label>
+    <input class="form-control" type="text" name="title" value="{{ article.title }}"><br />
+    <!-- 값으로 기존 article의 제목을 받아옴 -->
+    <label for="content">Content: </label>
+    <textarea class="form-control" name="content" cols="30" rows="5">{{ article.content }}</textarea><br />
+    <input type="submit">
+</form>
+
+{%  endblock %}
